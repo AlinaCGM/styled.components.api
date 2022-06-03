@@ -1,7 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from "react-router-dom";
 import { Button } from '../components/styles/Button.styled'
-import { Container, MainBox, ImageAbout} from '../components/styles/About.styled';
+import { Container, MainBox, ImageAbout,Item} from '../components/styles/About.styled';
+import { AppContext } from '../components/context/AppContext'
+import PageFirst from './PageFirst';
+import PageSecond from './PageSecond';
+import PageThird from './PageThird';
+
 
 
 
@@ -10,6 +15,12 @@ export default function About() {
     const [data, setData] = useState();
     const [loading, setLoading] = useState();
     const [error, setError] = useState();
+  
+
+
+    const [pageFirst, setPageFirst] = useState(false)   // all the hooks in one place
+    const [pageSecond, setPageSecond] = useState(false)
+    const [pageThird, setPageThird] = useState(false)
   
 
     useEffect(() => {
@@ -41,11 +52,14 @@ export default function About() {
       const dataAll =data && data.map ((list, index) => {
           return (
           <MainBox key={index} >
-         <div> {'Author :'+ list.author}</div>  &nbsp;
-         <div> {'Name :'+ list.name} </div>
-         <ImageAbout src={list.avatar} alt={list.avatar}/>
+          <ImageAbout src={list.avatar} alt={list.avatar}/>
+         <Item> {'Author :'+ list.author} &nbsp;
+          {'Name :'+ list.name} 
+         
+         </Item> 
           </MainBox>
           )
+          
       } )
  
 
@@ -54,6 +68,52 @@ export default function About() {
     <div id='about' >
     <h1>About</h1>
     <Button> <Link to="/">back to Home page</Link></Button>
+    <span>
+    <button className="cart-btn" 
+        onClick={() => {
+          setPageFirst(true)   // buttons logics
+          setPageSecond(false)
+          setPageThird(false)
+         
+          setPageFirst(!pageFirst)
+            }} >
+           Page1
+            </button>
+    </span>
+    <span>
+    <button className="cart-btn" 
+        onClick={() => {
+          setPageFirst(false)   // buttons logics
+          setPageSecond(true)
+          setPageThird(false)
+         
+          setPageSecond(!pageSecond)
+            }} >
+              Page2
+            </button>
+    </span>
+    <span>
+    <button className="cart-btn" 
+        onClick={() => {
+          setPageFirst(false)   // buttons logics
+          setPageSecond(false)
+          setPageThird(true)
+         
+          setPageThird(!pageThird)
+            }} >
+        Page3
+            </button>
+    </span>
+    <div>
+    
+
+  <AppContext.Provider value={{ setPageFirst, setPageSecond,setPageThird }}>   
+            {pageFirst && <PageFirst />}
+            {pageSecond && <PageSecond />}
+            {pageThird && <PageThird />}
+            
+          </AppContext.Provider>
+       </div>
     
     {loading?('loading') : error?('error') : (
         <div> 
