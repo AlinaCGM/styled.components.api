@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from "react-router-dom";
 import { Button } from '../components/styles/Button.styled'
-import { AboutHeader, MainBox} from '../components/styles/About.styled';
+import { Container, MainBox, ImageAbout} from '../components/styles/About.styled';
+
 
 
 
@@ -40,16 +41,16 @@ export default function About() {
       const dataAll =data && data.map ((list, index) => {
           return (
           <MainBox key={index} >
-         <div> {'Author'+ list.author} </div>
-         <div> {'Name'+ list.name} </div>
-         <img src={list.avatar} alt={list.avatar}/>
+         <div> {'Author :'+ list.author}</div>  &nbsp;
+         <div> {'Name :'+ list.name} </div>
+         <ImageAbout src={list.avatar} alt={list.avatar}/>
           </MainBox>
           )
       } )
  
 
   return (
-    <AboutHeader >
+    <Container >
     <div id='about' >
     <h1>About</h1>
     <Button> <Link to="/">back to Home page</Link></Button>
@@ -61,6 +62,6 @@ export default function About() {
 
     )}
     </div>
-    </AboutHeader>
+    </Container>
   )
 }

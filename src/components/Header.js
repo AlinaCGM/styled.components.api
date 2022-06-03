@@ -6,7 +6,7 @@ import { Container } from './styles/Container.styled'
 import { Flex } from './styles/Flex.styled'
 import { Button } from './styles/Button.styled'
 
-export default function Header() {
+export default function Header() { 
   return (
     <StyledHeader>
       <Container>
