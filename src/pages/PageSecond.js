@@ -6,9 +6,11 @@ function PageSecond() {
     const {apiDataText} = useContext(AppContext) 
   return (
     <ContainerPage2>
-    <h1>PageSecond</h1>
+   
 
-    {apiDataText}
+    {apiDataText.slice(2,5).map((text, id)=>
+      (<div  key={id}>{text}</div>))}
+
     </ContainerPage2>
   )
 }

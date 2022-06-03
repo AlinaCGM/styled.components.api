@@ -1,32 +1,34 @@
 import styled from 'styled-components'
 
 export const ContainerPage1 = styled.div`
+padding:0;
 width: 300px;
-height:300px;
-border-radius:50%;
+height:auto;
 color:red;
 margin:auto;
-background-color:red;
-
-& > div {
-    margin-bottom: 2rem;
-    margin:auto;
-    color:red;
-}
 `
 export const ContainerPage2 = styled.div`
+padding:2rem;
 width: 300px;
-height:300px;
-border-radius:50%;
+height:auto;
 color:green;
 margin:auto;
-background-color:green;
 `
 export const ContainerPage3 = styled.div`
+padding:2rem;
 width: 300px;
-height:300px;
-border-radius:50%;
+height:auto;
 color:blue;
 margin:auto;
-background-color:blue;
+`
+export const ImagePage = styled.img`
+width: 100px;
+height:auto;
+`
+export const Row = styled.div`
+width:100%;
+`
+export const Column = styled.div`
+
+width:20%;
 `

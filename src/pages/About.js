@@ -2,12 +2,12 @@ import React, {useState, useEffect} from 'react'
 import {Link} from "react-router-dom";
 import { Button } from '../components/styles/Button.styled'
 import { Container, MainBox, ImageAbout,Item} from '../components/styles/About.styled';
+import {ImagePage, Column} from '../components/styles/Page.styled'
 import { AppContext } from '../components/context/AppContext'
 import PageFirst from './PageFirst';
 import PageSecond from './PageSecond';
 import PageThird from './PageThird';
-
-
+import { useFetchCustom } from '../useFetchCustom';
 
 
 
@@ -15,14 +15,36 @@ export default function About() {
     const [data, setData] = useState();
     const [loading, setLoading] = useState();
     const [error, setError] = useState();
-  
-
-
+    const { dataCustom} = useFetchCustom()   
     const [pageFirst, setPageFirst] = useState(false)   // all the hooks in one place
     const [pageSecond, setPageSecond] = useState(false)
     const [pageThird, setPageThird] = useState(false)
   
-
+    const apiData = dataCustom.map((content) => (    // mapping and storing the data from the custom hook
+    <>
+      {loading && <h1>Loading...</h1>}
+      {dataCustom && (
+        <>
+        <Column xs='4' sm='4' md='4'>
+          <ImagePage src={content.download_url} alt='img' />
+          </Column>
+        </>
+      )}
+    </>
+  ))
+  const apiDataText = dataCustom.map((text) => (   // data with pictures and text to use in cards
+  <> 
+    {loading && <h1>Loading...</h1>} 
+    {dataCustom && (
+      <>
+      <Column xs='4' sm='4' md='4'>
+        <ImagePage  src={text.download_url} alt='img' />
+      {text.author}
+      </Column>
+      </>
+    )}
+  </>
+))
     useEffect(() => {
         const getData = async () => {
           try {
@@ -107,12 +129,12 @@ export default function About() {
     <div>
     
 
-  <AppContext.Provider value={{ setPageFirst, setPageSecond,setPageThird }}>   
+  <AppContext.Provider value={{ setPageFirst, setPageSecond,setPageThird, apiData, apiDataText }}>   
             {pageFirst && <PageFirst />}
             {pageSecond && <PageSecond />}
             {pageThird && <PageThird />}
             
-          </AppContext.Provider>
+  </AppContext.Provider>
        </div>
     
     {loading?('loading') : error?('error') : (

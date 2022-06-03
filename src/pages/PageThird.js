@@ -7,9 +7,11 @@ function PageThird() {
     const {apiDataText} = useContext(AppContext) 
   return (
     <ContainerPage3>
-    <h1>PageThird</h1>
+   
     
-      {apiDataText}
+    {apiDataText.slice(3,6).map((text, id)=>
+      (<div  key={id}>{text}</div>))}
+
     </ContainerPage3>
   )
 }
