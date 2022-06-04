@@ -30,5 +30,5 @@ width:100%;
 `
 export const Column = styled.div`
 
-width:20%;
+width:30%;
 `

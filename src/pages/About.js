@@ -11,21 +11,23 @@ import { useFetchCustom } from '../useFetchCustom';
 
 
 
+
 export default function About() {
     const [data, setData] = useState();
     const [loading, setLoading] = useState();
     const [error, setError] = useState();
-    const { dataCustom} = useFetchCustom()   
-    const [pageFirst, setPageFirst] = useState(false)   // all the hooks in one place
-    const [pageSecond, setPageSecond] = useState(false)
-    const [pageThird, setPageThird] = useState(false)
+    const { dataCustom} = useFetchCustom();   
+    const [pageFirst, setPageFirst] = useState(false);   // all the hooks in one place
+    const [pageSecond, setPageSecond] = useState(false);
+    const [pageThird, setPageThird] = useState(false);
+    const [show, setShow] = useState();
   
     const apiData = dataCustom.map((content) => (    // mapping and storing the data from the custom hook
     <>
       {loading && <h1>Loading...</h1>}
       {dataCustom && (
         <>
-        <Column xs='4' sm='4' md='4'>
+        <Column>
           <ImagePage src={content.download_url} alt='img' />
           </Column>
         </>
@@ -83,7 +85,13 @@ export default function About() {
           )
           
       } )
- 
+  const mainShow = () => {
+    setShow (!show)
+  }
+
+
+
+
 
   return (
     <Container >
@@ -91,7 +99,7 @@ export default function About() {
     <h1>About</h1>
     <Button> <Link to="/">back to Home page</Link></Button>
     <span>
-    <button className="cart-btn" 
+    <Button  
         onClick={() => {
           setPageFirst(true)   // buttons logics
           setPageSecond(false)
@@ -100,10 +108,10 @@ export default function About() {
           setPageFirst(!pageFirst)
             }} >
            Page1
-            </button>
+            </Button>
     </span>
     <span>
-    <button className="cart-btn" 
+    <Button 
         onClick={() => {
           setPageFirst(false)   // buttons logics
           setPageSecond(true)
@@ -112,11 +120,11 @@ export default function About() {
           setPageSecond(!pageSecond)
             }} >
               Page2
-            </button>
+            </Button>
     </span>
     <span>
-    <button className="cart-btn" 
-        onClick={() => {
+    <Button 
+          onClick={() => {
           setPageFirst(false)   // buttons logics
           setPageSecond(false)
           setPageThird(true)
@@ -124,7 +132,7 @@ export default function About() {
           setPageThird(!pageThird)
             }} >
         Page3
-            </button>
+            </Button>
     </span>
     <div>
     
@@ -138,12 +146,23 @@ export default function About() {
        </div>
     
     {loading?('loading') : error?('error') : (
-        <div> 
+      
+      <div>
+        {show? (<div> 
+        <Button onClick={mainShow}>HIDE</Button>
+      
         {dataAll}
-        </div>
+     
+        </div>) : (
+        <Button onClick={mainShow}>SHOW</Button>)
+       }
+      </div>
+        
 
     )}
+
     </div>
     </Container>
   )
 }
+
