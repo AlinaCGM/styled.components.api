@@ -1,5 +1,5 @@
 
-const content = [
+const content = [ 
     {
       id: 1,
       title: 'Grow Together',

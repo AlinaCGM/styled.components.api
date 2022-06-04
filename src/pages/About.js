@@ -2,12 +2,15 @@ import React, {useState, useEffect} from 'react'
 import {Link} from "react-router-dom";
 import { Button } from '../components/styles/Button.styled'
 import { Container, MainBox, ImageAbout,Item} from '../components/styles/About.styled';
-import {ImagePage, Column} from '../components/styles/Page.styled'
+import {ImagePage} from '../components/styles/Page.styled';
+
 import { AppContext } from '../components/context/AppContext'
 import PageFirst from './PageFirst';
 import PageSecond from './PageSecond';
 import PageThird from './PageThird';
 import { useFetchCustom } from '../useFetchCustom';
+
+
 
 
 
@@ -27,9 +30,9 @@ export default function About() {
       {loading && <h1>Loading...</h1>}
       {dataCustom && (
         <>
-        <Column>
+       
           <ImagePage src={content.download_url} alt='img' />
-          </Column>
+         
         </>
       )}
     </>
@@ -39,10 +42,10 @@ export default function About() {
     {loading && <h1>Loading...</h1>} 
     {dataCustom && (
       <>
-      <Column xs='4' sm='4' md='4'>
+    
         <ImagePage  src={text.download_url} alt='img' />
       {text.author}
-      </Column>
+    
       </>
     )}
   </>
@@ -88,9 +91,6 @@ export default function About() {
   const mainShow = () => {
     setShow (!show)
   }
-
-
-
 
 
   return (
@@ -157,11 +157,15 @@ export default function About() {
         <Button onClick={mainShow}>SHOW</Button>)
        }
       </div>
-        
+     
 
     )}
-
+    
     </div>
+   
+
+          )
+
     </Container>
   )
 }

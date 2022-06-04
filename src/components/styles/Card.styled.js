@@ -8,9 +8,9 @@ export const StyledCard = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   margin: 40px 0;
   padding: 60px;
-  flex-direction: ${({ layout }) => layout || 'row'};
+  flex-direction: row;
   img {
-    width: 80%;
+    width: 40%;
   }
   & > div {
     flex: 1;
@@ -18,4 +18,17 @@ export const StyledCard = styled.div`
   @media (max-width: ${({ theme }) => theme.mobile}) {
     flex-direction: column;
   }
-`
+`;
+export const Grid = styled.div`
+
+`;
+
+export const Row = styled.div`
+display: flex;
+flex-direction: row;
+flex-wrap: wrap ;
+justify-content:space-around;
+`;
+export const Col = styled.div`
+flex:  ${(props) => props.size}
+`;

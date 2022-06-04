@@ -13,5 +13,5 @@ export default function Card({ item: { id, title, body, image } }) {
         <img src={`./images/${image}`} alt='' />
       </div>
     </StyledCard>
-  )
+  ) 
 }
